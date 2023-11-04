@@ -3,7 +3,24 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-const navItems = ["Home", "Gallery", "Work", "Contact"];
+const navItems = [
+  {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Gallery",
+    link: "/#gallery",
+  },
+  {
+    name: "Work",
+    link: "/",
+  },
+  {
+    name: "Contact",
+    link: "/",
+  },
+];
 
 const Navbar = () => {
   const [nav, setNav] = useState(true);
@@ -29,7 +46,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full duration-300 ease-in z-10" style={{color: textColor, backgroundColor: color}}>
+    <div
+      className="fixed top-0 left-0 w-full duration-300 ease-in z-10"
+      style={{ color: textColor, backgroundColor: color }}
+    >
       <div className="flex justify-between items-center  p-4 max-w-[1240px] mx-auto">
         <h2 className="text-2xl font-bold cursor-pointer">
           <Link href="/">Captur</Link>
@@ -40,8 +60,8 @@ const Navbar = () => {
               key={index}
               className="hover:text-indigo-400 border-b-4 ease-linear duration-300 border-b-transparent hover:border-indigo-300"
             >
-              <Link href="/" className="w-full p-4 block">
-                {item}
+              <Link href={item.link} className="w-full p-4 block">
+                {item.name}
               </Link>
             </li>
           ))}
@@ -65,8 +85,8 @@ const Navbar = () => {
           <ul className="flex flex-col">
             {navItems.map((item, index) => (
               <li key={index} className="w-full">
-                <Link className="p-4 text-4xl px-16 w-full block" href="/">
-                  {item}
+                <Link className="p-4 text-4xl px-16 w-full block" href={item.link}>
+                  {item.name}
                 </Link>
               </li>
             ))}
