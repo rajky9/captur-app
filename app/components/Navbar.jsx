@@ -6,7 +6,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 const navItems = [
   {
     name: "Home",
-    link: "/",
+    link: "/#home",
   },
   {
     name: "Gallery",
@@ -14,11 +14,11 @@ const navItems = [
   },
   {
     name: "Work",
-    link: "/",
+    link: "/#work",
   },
   {
     name: "Contact",
-    link: "/",
+    link: "/#contact",
   },
 ];
 
@@ -42,15 +42,17 @@ const Navbar = () => {
       }
     };
     window.addEventListener("scroll", changeColor);
-    console.log(window.scrollY);
+    return () => {
+      window.removeEventListener('scroll', changeColor);
+    };
   }, []);
 
   return (
     <div
-      className="fixed top-0 left-0 w-full duration-300 ease-in z-10"
+      className="fixed top-0 left-0 w-full duration-300 ease-in z-50"
       style={{ color: textColor, backgroundColor: color }}
     >
-      <div className="flex justify-between items-center  p-4 max-w-[1240px] mx-auto">
+      <div className="flex justify-between items-center p-4 max-w-[1240px] mx-auto">
         <h2 className="text-2xl font-bold cursor-pointer">
           <Link href="/">Captur</Link>
         </h2>

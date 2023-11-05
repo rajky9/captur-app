@@ -4,7 +4,7 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Slider = ({ SliderData }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -26,32 +26,42 @@ const Slider = ({ SliderData }) => {
   }
 
   return (
-    <div id="gallery" className="max-w-[1240px] mx-auto">
+    <div
+      id="gallery"
+      className="max-w-[1240px] mx-auto scroll-m-20 overflow-hidden"
+    >
       <h1 className="py-10 text-center text-5xl font-bold">Gallery</h1>
-      <div className="relative flex justify-center">
+      <div className="flex justify-center p-2">
         {SliderData.map((item, index) => (
-          <div
-            key={index}
-            className={
-              currentSlide === index
-                ? "opacity-100 duration-500 ease-in"
-                : "opacity-0"
-            }
-          >
+          <div className="relative" key={index}>
             <div
-              onClick={prevSlide}
-              className="absolute text-white/80 z-[2] hover:text-white cursor-pointer top-[50%] ml-6"
+              className={
+                currentSlide === index
+                  ? "opacity-100 duration-500 ease-in"
+                  : "opacity-0"
+              }
             >
-              <BsFillArrowLeftCircleFill size={50} />
-            </div>
-            {currentSlide === index && (
-              <Image src={item.image} alt="/" width="1440" height="600" className="w-[1440px] h-[600px]" />
-            )}
-            <div
-              onClick={nextSlide}
-              className="absolute text-white/80 z-[2] hover:text-white cursor-pointer top-[50%] right-0 mr-6"
-            >
-              <BsFillArrowRightCircleFill size={50} />
+              {currentSlide === index && (
+                <Image
+                  src={item.image}
+                  alt="/"
+                  width={1440}
+                  height={800}
+                  className="object-cover"
+                />
+              )}
+              <div
+                onClick={prevSlide}
+                className="absolute text-white/80 z-[2] hover:text-black/80 cursor-pointer top-[50%] ml-6 translate-y-[-50%]"
+              >
+                <BsFillArrowLeftCircleFill size={50} />
+              </div>
+              <div
+                onClick={nextSlide}
+                className="absolute text-white/80 z-[2] hover:text-black/80 cursor-pointer top-[50%] right-0 mr-6 translate-y-[-50%]"
+              >
+                <BsFillArrowRightCircleFill size={50} />
+              </div>
             </div>
           </div>
         ))}

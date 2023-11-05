@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = ({ heading, message }) => {
   return (
-    <div className="custom-img w-full h-screen bg-fixed bg-center bg-cover">
+    <div id="home" className="custom-img w-full h-screen bg-fixed bg-center bg-cover">
       {/* OVERLAY */}
       <div className="absolute top-0 left-0 w-full h-screen bg-black/60" />
       <div className="absolute top-[20%] w-full">
