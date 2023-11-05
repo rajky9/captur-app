@@ -12,7 +12,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero
-        heading="Capture Photography"
+        heading="Captur Photography"
         message="I capture moments in nature and keep them alive."
       />
       <Slider SliderData={SliderData} />
