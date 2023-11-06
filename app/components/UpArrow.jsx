@@ -18,7 +18,7 @@ const UpArrow = () => {
   }, []);
   return (
     <div
-      className="fixed sm:right-12 right-8 md:right-16 bottom-[5%] cursor-pointer text-blue-700"
+      className="fixed sm:right-12 right-8 md:right-16 bottom-[5%] cursor-pointer text-blue-700 z-50"
       style={{ display: opacity }}
     >
       <Link href="/#home">

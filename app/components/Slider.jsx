@@ -1,71 +1,61 @@
 "use client";
 import React, { useState } from "react";
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
+import { SliderData } from '../data/slider-data';
+import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 import Image from "next/legacy/image";
 
-const Slider = ({ SliderData }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const length = SliderData.length;
+const Slider = ({ slides }) => {
+  const [current, setCurrent] = useState(0);
+  const length = slides.length;
 
   const nextSlide = () => {
-    setCurrentSlide((currentSlide) =>
-      currentSlide + 1 < length ? currentSlide + 1 : 0
-    );
+    setCurrent(current === length - 1 ? 0 : current + 1);
+  };
+  const prevSlide = () => {
+    setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  const prevSlide = () => {
-    setCurrentSlide((currentSlide) =>
-      currentSlide - 1 >= 0 ? currentSlide - 1 : length - 1
-    );
-  };
-  if (!Array.isArray(SliderData) || SliderData.length <= 0) {
+  if (!Array.isArray(slides) || slides.length <= 0) {
     return null;
   }
 
   return (
-    <div
-      id="gallery"
-      className="max-w-[1240px] mx-auto scroll-m-20 overflow-hidden"
-    >
-      <h1 className="py-10 text-center text-5xl font-bold">Gallery</h1>
-      <div className="flex justify-center p-2">
-        {SliderData.map((item, index) => (
-          <div className="relative" key={index}>
-            <div
-              className={
-                currentSlide === index
-                  ? "opacity-100 duration-500 ease-in"
-                  : "opacity-0"
-              }
-            >
-              {currentSlide === index && (
+    <div id='gallery' className='max-w-[1240px] mx-auto scroll-m-20'>
+      <h1 className='text-4xl font-bold text-center p-4'>Gallery</h1>
+      <div className='relative flex justify-center p-4'>
+
+      {SliderData.map((slide, index) => {
+        return (
+          <div
+            key={index}
+            className={
+              index === current
+                ? 'opacity-[1] ease-in duration-1000'
+                : 'opacity-0'
+            }
+          >
+              <FaArrowCircleLeft
+                onClick={prevSlide}
+                className='absolute top-[50%] left-[30px] text-white/70 cursor-pointer select-none z-[2]'
+                size={50}
+              />
+              {index === current && (
                 <Image
-                  src={item.image}
-                  alt="/"
-                  width={1440}
-                  height={800}
-                  className="object-cover"
+                  src={slide.image}
+                  alt='/'
+                  width='1440'
+                  height='600'
                 />
               )}
-              <div
-                onClick={prevSlide}
-                className="absolute text-white/80 z-[2] hover:text-black/80 cursor-pointer top-[50%] ml-6 translate-y-[-50%]"
-              >
-                <BsFillArrowLeftCircleFill size={50} />
-              </div>
-              <div
+              <FaArrowCircleRight
                 onClick={nextSlide}
-                className="absolute text-white/80 z-[2] hover:text-black/80 cursor-pointer top-[50%] right-0 mr-6 translate-y-[-50%]"
-              >
-                <BsFillArrowRightCircleFill size={50} />
-              </div>
+                className='absolute top-[50%] right-[30px] text-white/70 cursor-pointer select-none z-[2]'
+                size={50}
+              />
             </div>
-          </div>
-        ))}
-      </div>
+        );
+    })}
+    </div>
     </div>
   );
 };
