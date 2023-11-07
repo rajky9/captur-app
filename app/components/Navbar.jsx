@@ -24,8 +24,8 @@ const navItems = [
 
 const Navbar = () => {
   const [nav, setNav] = useState(true);
-  const [color, setColor] = useState("transparent");
-  const [textColor, setTextColor] = useState("white");
+  // const [color, setColor] = useState("transparent");
+  // const [textColor, setTextColor] = useState("white");
 
   const handleNavClick = () => {
     setNav(!nav);
@@ -33,24 +33,31 @@ const Navbar = () => {
 
   useEffect(() => {
     const changeColor = () => {
+      const navbar = document.getElementById("navbar");
       if (window.scrollY > 90) {
-        setColor("white");
-        setTextColor("black");
+        navbar.style.color = "black";
+        navbar.style.backgroundColor = "white";
+        console.log(navbar);
+        // setColor("white");
+        // setTextColor("black");
       } else {
-        setColor("transparent");
-        setTextColor("white");
+        navbar.style.backgroundColor = "transparent";
+        navbar.style.color = "white";
+        // setColor("transparent");
+        // setTextColor("white");
       }
     };
     window.addEventListener("scroll", changeColor);
     return () => {
-      window.removeEventListener('scroll', changeColor);
+      window.removeEventListener("scroll", changeColor);
     };
   }, []);
 
   return (
     <div
+      id="navbar"
       className="fixed top-0 left-0 w-full duration-300 ease-in z-50"
-      style={{ color: textColor, backgroundColor: color }}
+       style={{ color: "white", backgroundColor: "transparent" }}
     >
       <div className="flex justify-between items-center p-4 max-w-[1240px] mx-auto">
         <h2 className="text-2xl font-bold cursor-pointer">
@@ -60,7 +67,7 @@ const Navbar = () => {
           {navItems.map((item, index) => (
             <li
               key={index}
-              className="hover:text-indigo-400 border-b-4 ease-linear duration-300 border-b-transparent hover:border-indigo-300"
+              className="hover:text-indigo-400 border-b-4 ease-linear duration-300 border-b-transparent hover:border-indigo-300 focus:text-red-500 focus:border-b-4"
             >
               <Link href={item.link} className="w-full p-4 block">
                 {item.name}
@@ -87,7 +94,10 @@ const Navbar = () => {
           <ul className="flex flex-col">
             {navItems.map((item, index) => (
               <li key={index} className="w-full">
-                <Link className="p-4 text-4xl px-16 w-full block" href={item.link}>
+                <Link
+                  className="p-4 text-4xl px-16 w-full block"
+                  href={item.link}
+                >
                   {item.name}
                 </Link>
               </li>

@@ -11,7 +11,7 @@ const Instagram = () => {
   return (
     <div id="work" className="scroll-m-20 max-w-[1240px] mx-auto p-2 text-center">
       <h2 className="pt-8 pb-4 text-4xl font-bold">Follow me on Instagram</h2>
-      <p className="pb-6 text-gray-600 cursor-pointer w-fit mx-auto">@Captur</p>
+      <p className="pb-6 text-gray-600 cursor-pointer w-fit mx-auto hover:scale-150 hover:translate-y-1 duration-200 ease-in">@Captur</p>
       <div className="grid lg:grid-cols-6 lg:gap-3 md:grid-cols-3 md:gap-3 grid-cols-2 gap-1">
         <IgImage src={igImg1} />
         <IgImage src={igImg2} />
